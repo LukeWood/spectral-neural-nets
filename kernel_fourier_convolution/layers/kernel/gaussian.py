@@ -9,8 +9,8 @@ class Gaussian2DKernelFourierLayer(KernelFourierConvolutionBase):
         super(Gaussian2DKernelFourierLayer, self).__init__(filters)
 
     def add_kernel_weights(self, h, w):
-        # , x0, y0, a, b, c, s0, s1, s2
-        weights_shape = (self.filters, 8)
+        # , x0, y0, a, b, c, s0
+        weights_shape = (self.filters, 6)
         self.real_terms = self.add_weight(
             shape=weights_shape,
             initializer=initializers.RandomNormal(mean=0, stddev=0.05),
@@ -44,11 +44,9 @@ class Gaussian2DKernelFourierLayer(KernelFourierConvolutionBase):
             b = variables[3]
             c = variables[4]
             s0 = variables[5]
-            s1 = variables[6]
-            s2 = variables[7]
 
-            x_minus_x0 = s1*(cols - x0)
-            y_minus_y0 = s2*(rows - y0)
+            x_minus_x0 = (cols - x0)
+            y_minus_y0 = (rows - y0)
 
             x_minus_x0_repeated = tf.expand_dims(y_minus_y0, axis=0)
             y_minus_y0_repeated = tf.expand_dims(x_minus_x0, axis=1)

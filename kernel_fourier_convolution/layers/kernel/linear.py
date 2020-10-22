@@ -12,10 +12,6 @@ class LinearKernelFourierConvolution(KernelFourierConvolutionBase):
     def add_kernel_weights(self, h, w):
         weights_shape = (2, self.filters, self.order+1)
         # One kernel set for row, one for column entry
-        self.real_term_shifts = self.add_weight(
-            shape=(self.filters, 2),
-            initializer=initializers.RandomNormal(mean=0, stddev=0.005),
-            trainable=True)
         self.real_terms = self.add_weight(
             shape=weights_shape,
             initializer=initializers.RandomNormal(mean=0, stddev=0.005),

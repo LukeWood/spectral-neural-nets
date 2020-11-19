@@ -1,31 +1,31 @@
 import tensorflow as tf
 import tensorflow.keras.initializers as initializers
 
-from .base import KernelFourierConvolutionBase
+from .base import ParametricFourierConvolutionBase
 
 
-class LinearKernelFourierConvolution(KernelFourierConvolutionBase):
+class LinearFourierConvolution(ParametricFourierConvolutionBase):
     def __init__(self, filters, order=1, **kwargs):
-        super(LinearKernelFourierConvolution, self).__init__(filters, **kwargs)
+        super(LinearFourierConvolution, self).__init__(filters, **kwargs)
         self.order = order
 
-    def add_kernel_weights(self, h, w):
+    def add_filter_weights(self, h, w):
         weights_shape = (2, self.filters, self.order+1)
-        # One kernel set for row, one for column entry
+        # One filter set for row, one for column entry
         self.real_terms = self.add_weight(
             shape=weights_shape,
             initializer=initializers.RandomNormal(mean=0, stddev=0.005),
             trainable=True
         )
 
-        # One kernel set for row, one for column entry
+        # One filter set for row, one for column entry
         self.imag_terms = self.add_weight(
             shape=weights_shape,
             initializer=initializers.RandomNormal(mean=0, stddev=0.005),
             trainable=True
         )
 
-    def expand_kernel(self, h, w):
+    def expand_filter(self, h, w):
         terms = self.real_terms
         row_terms = terms[0]
         col_terms = terms[1]
@@ -45,7 +45,7 @@ class LinearKernelFourierConvolution(KernelFourierConvolutionBase):
             r_res = tf.repeat(r_res, h, axis=0)
             c_res = tf.repeat(c_res, w, axis=1)
             res.append(r_res + c_res)
-        real_kernel = tf.stack(res, axis=-1)
+        real_filter = tf.stack(res, axis=-1)
 
         terms = self.imag_terms
         row_terms = terms[0]
@@ -62,5 +62,5 @@ class LinearKernelFourierConvolution(KernelFourierConvolutionBase):
             r_res = tf.repeat(r_res, h, axis=0)
             c_res = tf.repeat(c_res, w, axis=1)
             res.append(r_res + c_res)
-        imag_kernel = tf.stack(res, axis=-1)
-        return real_kernel, imag_kernel
+        imag_filter = tf.stack(res, axis=-1)
+        return real_filter, imag_filter

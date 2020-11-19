@@ -1,14 +1,14 @@
 import tensorflow as tf
 import tensorflow.keras.initializers as initializers
-from .base import KernelFourierConvolutionBase
+from .base import ParametricFourierConvolutionBase
 
 
-class Gaussian2DKernelFourierLayer(KernelFourierConvolutionBase):
+class Gaussian2DFourierLayer(ParametricFourierConvolutionBase):
 
     def __init__(self, filters, **kwargs):
-        super(Gaussian2DKernelFourierLayer, self).__init__(filters)
+        super(Gaussian2DFourierLayer, self).__init__(filters)
 
-    def add_kernel_weights(self, h, w):
+    def add_filter_weights(self, h, w):
         # , x0, y0, a, b, c, s0
         weights_shape = (self.filters, 6)
         self.real_terms = self.add_weight(
@@ -17,7 +17,7 @@ class Gaussian2DKernelFourierLayer(KernelFourierConvolutionBase):
             trainable=True
         )
 
-        # One kernel set for row, one for column entry
+        # One filter set for row, one for column entry
         self.imag_terms = self.add_weight(
             shape=weights_shape,
             initializer=initializers.RandomNormal(mean=0, stddev=0.05),
@@ -25,9 +25,9 @@ class Gaussian2DKernelFourierLayer(KernelFourierConvolutionBase):
         )
 
     # f(x, y) = A*exp(-(a(s1*(x-x0))^2) + 2b(x-x0)(y-y0) + c((s2y-y0))^2)
-    def expand_one_kernel(self, kernel, h, w):
+    def expand_one_filter(self, filter, h, w):
         terms = None
-        if kernel == 'real':
+        if filter == 'real':
             terms = self.real_terms
         else:
             terms = self.imag_terms
@@ -64,10 +64,10 @@ class Gaussian2DKernelFourierLayer(KernelFourierConvolutionBase):
         result = tf.stack(res, axis=-1)
         return result
 
-    def expand_kernel(self, h, w):
-        return self.expand_one_kernel('real', h, w), \
-            self.expand_one_kernel('imag', h, w)
+    def expand_filter(self, h, w):
+        return self.expand_one_filter('real', h, w), \
+            self.expand_one_filter('imag', h, w)
         # expand on row
         # expand on col
         # concat together into a single axis
-        # apply kernel on an element-wise basis
+        # apply filter on an element-wise basis

@@ -1,8 +1,7 @@
 # spectral-neural-nets
 <img src="img/overview.png" width=400/>
 spectral-neural-nets is a Keras implementation of <a href="https://lukewood.dev/pdf/spectral-conv.pdf">Parametric Spectral Filters for Fast Converging, Scalable Convolutional Neural Networks<a/>.  Published at ICASSP 2021.
-  
-bibtex:
+
 ```
 @INPROCEEDINGS{9414587,
 author={Wood, Luke and Larson, Eric C.},

@@ -1,7 +1,19 @@
 # spectral-neural-nets
 <img src="img/overview.png" width=400/>
 spectral-neural-nets is a Keras implementation of <a href="https://lukewood.dev/pdf/spectral-conv.pdf">Parametric Spectral Filters for Fast Converging, Scalable Convolutional Neural Networks<a/>.  Published at ICASSP 2021.
-
+  
+bibtex:
+```
+@INPROCEEDINGS{9414587,
+author={Wood, Luke and Larson, Eric C.},
+booktitle={ICASSP 2021 - 2021 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP)}, 
+title={Parametric Spectral Filters for Fast Converging, Scalable Convolutional Neural Networks}, 
+year={2021},
+volume={},
+number={},
+pages={2800-2804},
+doi={10.1109/ICASSP39728.2021.9414587}}
+```
 ## Colab Notebooks
 - [Cats vs Dogs Benchmark](https://colab.research.google.com/github/lukewood/spectral-neural-nets/blob/master/notebooks/Cats-vs-Dogs-Benchmark.ipynb)
 - [Filter Visualization](https://colab.research.google.com/github/lukewood/spectral-neural-nets/blob/master/notebooks/Filter-Visualizations.ipynb)

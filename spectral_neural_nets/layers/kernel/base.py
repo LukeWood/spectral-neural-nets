@@ -43,7 +43,7 @@ class ParametricFourierConvolutionBase(tf.keras.layers.Layer):
         imag_times_imag = tf.einsum('ijkl,jko->ijko', imag_input, imag_W)
         y_real = real_times_real-imag_times_imag
 
-        real_times_imag = tf.einsum('ijkl,jko->ijko', real_input, real_W)
-        imag_times_real = tf.einsum('ijkl,jko->ijko', imag_input, imag_W)
+        real_times_imag = tf.einsum('ijkl,jko->ijko', real_input, imag_W)
+        imag_times_real = tf.einsum('ijkl,jko->ijko', imag_input, real_W)
         y_imag = real_times_imag + imag_times_real
         return tf.stack([y_real, y_imag], axis=-1)

@@ -16,6 +16,7 @@ doi={10.1109/ICASSP39728.2021.9414587}}
 ## Colab Notebooks
 - [Cats vs Dogs Benchmark](https://colab.research.google.com/github/lukewood/spectral-neural-nets/blob/master/notebooks/Cats-vs-Dogs-Benchmark.ipynb)
 - [Filter Visualization](https://colab.research.google.com/github/lukewood/spectral-neural-nets/blob/master/notebooks/Filter-Visualizations.ipynb)
+- [Spectral Encoder/Spatial Decoder autoencoder](https://colab.research.google.com/github/lukewood/spectral-neural-nets/blob/master/notebooks/Spectral_Auto_Encoder.ipynb)
 
 # Overview
 The center-piece of the spectral_neural_nets package is the [ParametricFourierConvolutionBase](https://github.com/LukeWood/spectral-neural-nets/blob/master/spectral_neural_nets/layers/kernel/base.py#L4).  This class performs pointwise convolution in the spectral domain for a given parametric as described in the publication.

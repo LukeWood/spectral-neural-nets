@@ -4,7 +4,9 @@
 <img src="img/overview.png" width=400/>
 spectral-neural-nets is a Keras implementation of <a href="https://lukewood.dev/pdf/spectral-conv.pdf">Parametric Spectral Filters for Fast Converging, Scalable Convolutional Neural Networks<a/>.  Published at ICASSP 2021.
 
-## Colab Notebooks
+## Reproduction, Colab Notebooks
+Your can reproduce my experimental results all from Colab:
+  
 - [Cats vs Dogs Benchmark](https://colab.research.google.com/github/lukewood/spectral-neural-nets/blob/master/notebooks/Cats-vs-Dogs-Benchmark.ipynb)
 - [Filter Visualization](https://colab.research.google.com/github/lukewood/spectral-neural-nets/blob/master/notebooks/Filter-Visualizations.ipynb)
 - [Spectral Encoder/Spatial Decoder autoencoder](https://colab.research.google.com/github/lukewood/spectral-neural-nets/blob/master/notebooks/Spectral_Auto_Encoder.ipynb)

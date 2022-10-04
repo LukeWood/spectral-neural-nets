@@ -40,7 +40,9 @@ The package also provides a fully trainable `FourierDomainConv2D` as described b
 
 ## Installation
 ```
-git clone https://github.com/lukewood/spectral-neural-nets && cd spectral-neural-nets && pip install .
+git clone https://github.com/lukewood/spectral-neural-nets \
+    && cd spectral-neural-nets \
+    && python setup.py develop
 ```
 
 ## Citation
